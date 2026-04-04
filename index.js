@@ -40,13 +40,13 @@ async function run() {
       res.send(result)
     })
 
-    // app.get('/users/:id', async (req, res) => {
-    //   const id = req.params.id;
-    //   console.log('need user id: ', id)
-    //   const query = { _id: new ObjectId(id) }
-    //   const result = await usersCollection.findOne(query);
-    //   res.send(result);
-    // })
+    app.get('/users/:id', async (req, res) => {
+      const id = req.params.id;
+      console.log('need user id: ', id)
+      const query = { _id: new ObjectId(id) }
+      const result = await usersCollection.findOne(query);
+      res.send(result);
+    })
 
     // add database related apis here
     app.post('/users', async (req, res) => {
@@ -64,11 +64,11 @@ async function run() {
       const update = {
         $set: {
           name: updatedUser.name,
-          email: updatedUser.email,
+          email: updatedUser.email
         }
       }
-      const option = {}
-      const result = await usersCollection.updateOne(query, update, option)
+      const options = {}
+      const result = await usersCollection.updateOne(query, update, options)
       res.send(result);
     })
 
